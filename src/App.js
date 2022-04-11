@@ -1,12 +1,14 @@
-import { Routes, Route, Link, Outlet } from "react-router-dom";
-import ProductList from "./components/ProductList";
+import { Routes, Route, Link } from "react-router-dom";
+import ProductList from "./components/product/ProductList";
 import Product from "./components/product/Product";
 import "./App.css";
 
 const App = () => {
   return (
     <div className="App">
-      <h1>Welcome to React Router!</h1>
+      <Link to={"/"}>Go home</Link>
+      <h1>Fetch product data FRONTEND</h1>
+      <br />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="products" element={<ProductList />} />
@@ -33,12 +35,11 @@ const Home = () => {
         <p>You can do this, I believe in you.</p>
       </main>
       <nav>
-        <Link to="/products/1">Product</Link>
+        <Link to="/products">Products</Link>
       </nav>
       <nav>
         <Link to="/about">About</Link>
       </nav>
-      <Outlet />
     </>
   );
 };

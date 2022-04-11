@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LinearProgress from "@mui/material/LinearProgress";
 import PriceList from "./PriceList";
-import API from "../../api/index";
+import API from "../../api";
 
 const Product = (props) => {
   const [productDetails, setProductDetails] = useState();
