@@ -14,8 +14,6 @@ const ProductList = () => {
     API.get("products/").then((response) => setProductList(response.data));
   }
 
-  console.log(productList);
-
   return productList.length === 0 ? (
     <div>No products</div>
   ) : (

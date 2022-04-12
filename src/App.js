@@ -2,11 +2,12 @@ import { Routes, Route, Link } from "react-router-dom";
 import ProductList from "./components/product/ProductList";
 import Product from "./components/product/Product";
 import "./App.css";
+import NavBar from "./components/menu/NavBar";
 
 const App = () => {
   return (
     <div className="App">
-      <Link to={"/"}>Go home</Link>
+      <NavBar />
       <h1>Fetch product data FRONTEND</h1>
       <br />
       <Routes>
@@ -51,9 +52,6 @@ const About = () => {
         <h2>Who are we?</h2>
         <p>That feels like an existential question, don't you think?</p>
       </main>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
     </>
   );
 };
