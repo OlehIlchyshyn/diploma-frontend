@@ -6,51 +6,11 @@ import {
   ListItemIcon,
   ListItemText,
   Collapse,
-  Drawer,
 } from "@mui/material";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import CategoryIcon from "@mui/icons-material/Category";
-import InfoIcon from "@mui/icons-material/Info";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
 import { hasChildren } from "../../utils";
-
-const menu = [
-  {
-    icon: <HomeOutlinedIcon />,
-    title: "Home",
-    to: "/",
-    items: [],
-  },
-  {
-    icon: <CategoryIcon />,
-    title: "Categories",
-    items: [
-      {
-        title: "Computers & Laptops",
-        items: [
-          {
-            title: "Computers",
-            to: "/computers",
-          },
-          {
-            title: "Laptops",
-            to: "/laptops",
-          },
-          {
-            title: "Tablets",
-            to: "/tablets",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    icon: <InfoIcon />,
-    title: "About",
-  },
-];
+import { menu } from "./menu";
 
 const MenuItem = ({ item }) => {
   const Component = hasChildren(item) ? MultiLevel : SingleLevel;
@@ -96,11 +56,4 @@ const MenuItems = () => {
   return menu.map((item, key) => <MenuItem key={key} item={item} />);
 };
 
-const NavBar = () => {
-  return (
-    <Drawer variant="persistent" anchor="left" open>
-      <MenuItems />
-    </Drawer>
-  );
-};
-export default NavBar;
+export default MenuItems;
