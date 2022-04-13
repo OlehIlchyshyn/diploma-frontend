@@ -1,14 +1,27 @@
 import { Container } from "@mui/material";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import API from "../../api";
 import ProductTile from "./ProductTile";
 
 const ProductList = () => {
   const [productList, setProductList] = useState([]);
+  let params = useParams();
 
   useEffect(() => {
-    requestProductList();
-  }, []);
+    let categoryId = params.categoryId;
+    if (categoryId === undefined) {
+      requestProductList();
+    } else {
+      requestProductListByCategory(categoryId);
+    }
+  }, [params.categoryId]);
+
+  async function requestProductListByCategory(categoryId) {
+    API.get(`products/categories/${categoryId}`).then((response) =>
+      setProductList(response.data)
+    );
+  }
 
   async function requestProductList() {
     API.get("products/").then((response) => setProductList(response.data));

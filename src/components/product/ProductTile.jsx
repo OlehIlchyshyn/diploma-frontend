@@ -5,7 +5,7 @@ const ProductTile = (props) => {
   const { product } = props;
   return (
     <Container>
-      <Link to={`${product.id}`}>{product.fullName}</Link>
+      <Link to={`/products/${product.id}`}>{product.fullName}</Link>
     </Container>
   );
 };

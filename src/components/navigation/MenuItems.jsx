@@ -60,9 +60,7 @@ const MenuItems = () => {
 
   async function requestCategories() {
     getCategories().then((categories) => {
-      console.log(menu);
-      menu[1]["items"] = categories;
-      console.log(menu);
+      menu[2]["items"] = categories;
     });
   }
 

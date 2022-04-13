@@ -11,7 +11,11 @@ export const getCategories = async () => {
   let categories = await fetchCategories();
   return categories.map((category) => {
     const subcategories = category.subCategories.map((subcategory) => {
-      return { title: subcategory.title, id: subcategory.id };
+      return {
+        title: subcategory.title,
+        id: subcategory.id,
+        to: `/products/categories/${subcategory.id}`,
+      };
     });
     return {
       title: category.title,

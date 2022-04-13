@@ -1,6 +1,7 @@
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import CategoryIcon from "@mui/icons-material/Category";
 import InfoIcon from "@mui/icons-material/Info";
+import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 
 const categories = [
   {
@@ -30,6 +31,11 @@ export const menu = [
     items: [],
   },
   {
+    icon: <ShoppingBasketOutlinedIcon />,
+    title: "All products",
+    to: "/products",
+  },
+  {
     icon: <CategoryIcon />,
     title: "Categories",
     items: categories,
@@ -37,5 +43,6 @@ export const menu = [
   {
     icon: <InfoIcon />,
     title: "About",
+    to: "/about",
   },
 ];
