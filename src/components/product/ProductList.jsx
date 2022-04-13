@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import API from "../../api";
@@ -30,11 +30,11 @@ const ProductList = () => {
   return productList.length === 0 ? (
     <div>No products</div>
   ) : (
-    <Container>
+    <Grid container spacing={2}>
       {productList.map((product) => (
         <ProductTile product={product} key={product.id} />
       ))}
-    </Container>
+    </Grid>
   );
 };
 
