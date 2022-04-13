@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   List,
@@ -11,6 +11,7 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { hasChildren } from "../../utils";
 import { menu } from "./menu";
+import { getCategories } from "../../api/catalogApi";
 
 const MenuItem = ({ item }) => {
   const Component = hasChildren(item) ? MultiLevel : SingleLevel;
@@ -41,7 +42,7 @@ const MultiLevel = ({ item }) => {
         <ListItemText primary={item.title} />
         {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </ListItem>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={open} timeout="auto" unmountOnExit collapsedSize="auto">
         <List component="div" disablePadding>
           {children.map((child, key) => (
             <MenuItem key={key} item={child} />
@@ -53,6 +54,18 @@ const MultiLevel = ({ item }) => {
 };
 
 const MenuItems = () => {
+  useEffect(() => {
+    requestCategories();
+  }, []);
+
+  async function requestCategories() {
+    getCategories().then((categories) => {
+      console.log(menu);
+      menu[1]["items"] = categories;
+      console.log(menu);
+    });
+  }
+
   return menu.map((item, key) => <MenuItem key={key} item={item} />);
 };
 
