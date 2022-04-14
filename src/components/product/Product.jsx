@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LinearProgress from "@mui/material/LinearProgress";
 import PriceList from "./PriceList";
-import API from "../../api";
+import { fetchProductById } from "../../api/productApi";
 
 const Product = (props) => {
   const [productDetails, setProductDetails] = useState();
@@ -14,10 +14,9 @@ const Product = (props) => {
   }, [params.productId]);
 
   async function requestProductDetails(id) {
-    API.get(`products/${id}`).then((response) => {
-      setProductDetails(response.data);
-    });
+    fetchProductById(id).then((product) => setProductDetails(product));
   }
+
   return productDetails === undefined ? (
     <LinearProgress />
   ) : (

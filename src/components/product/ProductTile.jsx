@@ -15,7 +15,7 @@ const ProductTile = (props) => {
   const minPrice = getMinPrice(product.priceList);
 
   return (
-    <Grid item xs={4}>
+    <Grid item xs={12} sm={6} lg={4}>
       <Card
         style={{ height: "100%", display: "flex", flexDirection: "column" }}
         sx={{ minWidth: 275 }}
@@ -43,7 +43,7 @@ const ProductTile = (props) => {
         </CardContent>
         <CardActions style={{ marginTop: "auto" }}>
           <Grid container paddingX={5} paddingBottom={1}>
-            <Grid item>
+            <Grid item marginY="auto">
               <Typography>
                 від <b>{minPrice.amount}</b> {minPrice.currency}
               </Typography>

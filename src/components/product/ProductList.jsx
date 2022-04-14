@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import API from "../../api";
+import { fetchProducts, fetchProductsByCategoryId } from "../../api/productApi";
 import ProductTile from "./ProductTile";
 
 const ProductList = () => {
@@ -18,13 +18,13 @@ const ProductList = () => {
   }, [params.categoryId]);
 
   async function requestProductListByCategory(categoryId) {
-    API.get(`products/categories/${categoryId}`).then((response) =>
-      setProductList(response.data)
+    fetchProductsByCategoryId(categoryId).then((products) =>
+      setProductList(products)
     );
   }
 
   async function requestProductList() {
-    API.get("products/").then((response) => setProductList(response.data));
+    fetchProducts().then((products) => setProductList(products));
   }
 
   return productList.length === 0 ? (
