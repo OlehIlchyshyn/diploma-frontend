@@ -15,3 +15,9 @@ export function hasChildren(item) {
 
   return true;
 }
+
+export function getMinPrice(priceList) {
+  return priceList.reduce(function (prev, curr) {
+    return prev.amount < curr.amount ? prev : curr;
+  });
+}

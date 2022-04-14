@@ -8,12 +8,18 @@ import {
   Grid,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { getMinPrice } from "../../utils";
 
 const ProductTile = (props) => {
   const { product } = props;
+  const minPrice = getMinPrice(product.priceList);
+
   return (
     <Grid item xs={4}>
-      <Card style={{ height: "100%" }} sx={{ minWidth: 275 }}>
+      <Card
+        style={{ height: "100%", display: "flex", flexDirection: "column" }}
+        sx={{ minWidth: 275 }}
+      >
         <CardMedia
           component="img"
           style={{
@@ -35,10 +41,28 @@ const ProductTile = (props) => {
               : product.description}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Link to={`/products/${product.id}`}>
-            <Button size="small">Learn More</Button>
-          </Link>
+        <CardActions style={{ marginTop: "auto" }}>
+          <Grid container paddingX={5} paddingBottom={1}>
+            <Grid item>
+              <Typography>
+                від <b>{minPrice.amount}</b> {minPrice.currency}
+              </Typography>
+            </Grid>
+            <Grid item marginLeft="auto">
+              <Grid container direction="row-reverse">
+                <Grid item>
+                  <Link
+                    to={`/products/${product.id}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button size="medium" variant="contained">
+                      Дізнатись більше
+                    </Button>
+                  </Link>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
         </CardActions>
       </Card>
     </Grid>
