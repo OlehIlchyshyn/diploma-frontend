@@ -46,7 +46,7 @@ const NavBar = () => {
             <ChevronLeftIcon />
           </IconButton>
         </ListItem>
-        <MenuItems />
+        <MenuItems stateChanger={setOpen} />
       </Drawer>
     </>
   );

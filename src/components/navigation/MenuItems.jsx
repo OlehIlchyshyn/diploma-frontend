@@ -13,14 +13,25 @@ import { hasChildren } from "../../utils";
 import { menu } from "./menu";
 import { getCategories } from "../../api/catalogApi";
 
-const MenuItem = ({ item }) => {
+let navBarStateChanger = (doNothing) => {};
+
+const handleLinkClick = () => {
+  navBarStateChanger(false);
+};
+
+const MenuItem = ({ item, stateChanger }) => {
   const Component = hasChildren(item) ? MultiLevel : SingleLevel;
-  return <Component item={item} />;
+  return <Component item={item} stateChanger={stateChanger} />;
 };
 
 const SingleLevel = ({ item }) => {
   return (
-    <ListItem button component={Link} to={item.to || "/404"}>
+    <ListItem
+      button
+      component={Link}
+      to={item.to || "/404"}
+      onClick={handleLinkClick}
+    >
       <ListItemIcon>{item.icon}</ListItemIcon>
       <ListItemText primary={item.title} />
     </ListItem>
@@ -53,7 +64,9 @@ const MultiLevel = ({ item }) => {
   );
 };
 
-const MenuItems = () => {
+const MenuItems = ({ stateChanger }) => {
+  navBarStateChanger = stateChanger;
+
   useEffect(() => {
     requestCategories();
   }, []);

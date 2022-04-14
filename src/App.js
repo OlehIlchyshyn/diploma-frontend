@@ -1,8 +1,8 @@
 import { Routes, Route, Link } from "react-router-dom";
 import ProductList from "./components/product/ProductList";
 import Product from "./components/product/Product";
-import "./App.css";
 import NavBar from "./components/navigation/NavBar";
+import "./App.css";
 
 const App = () => {
   return (
