@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import LinearProgress from "@mui/material/LinearProgress";
-import PriceList from "./PriceList";
+import {
+  LinearProgress,
+  Container,
+  Grid,
+  Typography,
+  CardMedia,
+  Divider,
+  Box,
+} from "@mui/material";
 import { fetchProductById } from "../../api/productApi";
+import PriceTable from "./PriceTable";
 
 const Product = (props) => {
-  const [productDetails, setProductDetails] = useState();
+  const [product, setProduct] = useState();
   let params = useParams();
 
   useEffect(() => {
@@ -14,16 +22,39 @@ const Product = (props) => {
   }, [params.productId]);
 
   async function requestProductDetails(id) {
-    fetchProductById(id).then((product) => setProductDetails(product));
+    fetchProductById(id).then((product) => setProduct(product));
   }
 
-  return productDetails === undefined ? (
+  return product === undefined ? (
     <LinearProgress />
   ) : (
-    <div>
-      <h3>{productDetails.fullName}</h3>
-      <PriceList prices={productDetails.priceList} />
-    </div>
+    <Container>
+      <Box mb={2}>
+        <Typography variant="h5" align="left">
+          {product.fullName}
+        </Typography>
+      </Box>
+      <Divider margin={5} />
+      <Grid container mt={2}>
+        <Grid item xs={6}>
+          <CardMedia
+            component="img"
+            style={{
+              width: "auto",
+              margin: "auto",
+            }}
+            image={product.imageUrl}
+            alt={product.fullName}
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <Box>Ціни</Box>
+          <Box>Характеристики</Box>
+          <Box>Опис</Box>
+        </Grid>
+      </Grid>
+      <PriceTable prices={product.priceList} />
+    </Container>
   );
 };
 
