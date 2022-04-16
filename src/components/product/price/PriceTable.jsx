@@ -9,9 +9,14 @@ import {
   TableRow,
   TableSortLabel,
   Paper,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Typography,
 } from "@mui/material";
 import PriceProvider from "./PriceProvider";
 import Price from "./Price";
+import AvailabilityStatus from "./AvailabilityStatus";
 
 function descendingComparator(a, b, orderBy) {
   if (orderBy === "priceProvider") {
@@ -20,7 +25,11 @@ function descendingComparator(a, b, orderBy) {
   } else if (orderBy === "price") {
     a = a.amount;
     b = b.amount;
+  } else if (orderBy === "status") {
+    a = a.availabilityStatus;
+    b = b.availabilityStatus;
   }
+
   if (b < a) {
     return -1;
   }
@@ -41,13 +50,31 @@ const headCells = [
     id: "priceProvider",
     sortable: true,
     disablePadding: true,
-    label: "Store",
+    label: "Магазин",
+  },
+  {
+    id: "priceHistory",
+    sortable: false,
+    disablePadding: true,
+    label: "Історія цін",
+  },
+  {
+    id: "status",
+    sortable: true,
+    disablePadding: false,
+    label: "Статус",
   },
   {
     id: "price",
     sortable: true,
     disablePadding: false,
-    label: "Price",
+    label: "Ціна",
+  },
+  {
+    id: "purchase",
+    sortable: false,
+    disablePadding: false,
+    label: "",
   },
 ];
 
@@ -88,6 +115,7 @@ function EnhancedTableHead(props) {
 export default function PriceTable({ prices }) {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("priceProvider");
+  const [filterNotAvailable, setFilterNotAvailable] = useState(true);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -95,15 +123,26 @@ export default function PriceTable({ prices }) {
     setOrderBy(property);
   };
 
+  const handleFilterChange = (event) => {
+    setFilterNotAvailable(event.target.checked);
+  };
+
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", mt: 3 }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
+        <Box sx={{ float: "right" }}>
+          <FormControlLabel
+            label="Відображати лише пропозиції, які є в наявності"
+            control={
+              <Checkbox
+                onChange={handleFilterChange}
+                checked={filterNotAvailable}
+              />
+            }
+          />
+        </Box>
         <TableContainer>
-          <Table
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
-            size={"medium"}
-          >
+          <Table aria-labelledby="tableTitle" size={"medium"}>
             <EnhancedTableHead
               order={order}
               orderBy={orderBy}
@@ -114,14 +153,41 @@ export default function PriceTable({ prices }) {
               {prices
                 .slice()
                 .sort(getComparator(order, orderBy))
-                .map((price, index) => {
+                .filter((price) => {
+                  if (filterNotAvailable) {
+                    return price.availabilityStatus === "AVAILABLE";
+                  }
+                  return true;
+                })
+                .map((price) => {
+                  const isAvailable = price.availabilityStatus === "AVAILABLE";
+
                   return (
                     <TableRow hover key={price.id}>
-                      <TableCell align="center">
+                      <TableCell align="center" width={150}>
                         <PriceProvider provider={price.priceProvider} />
                       </TableCell>
                       <TableCell align="center">
+                        <Typography>Від 1200грн до 2000грн</Typography>
+                        <Button variant="text">Переглянути деталі</Button>
+                      </TableCell>
+                      <TableCell align="center">
+                        <AvailabilityStatus
+                          availabilityStatus={price.availabilityStatus}
+                        />
+                      </TableCell>
+                      <TableCell align="center">
                         <Price price={price} />
+                      </TableCell>
+                      <TableCell align="right" width={100}>
+                        <Button
+                          href={price.purchaseUrl}
+                          target="_blank"
+                          variant="contained"
+                          disabled={!isAvailable}
+                        >
+                          Купити
+                        </Button>
                       </TableCell>
                     </TableRow>
                   );

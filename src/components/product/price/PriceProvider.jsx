@@ -3,9 +3,9 @@ import React from "react";
 
 const PriceProvider = ({ provider }) => {
   return (
-    <Box display="block" maxWidth={80} justifyContent="center">
+    <Box display="block" justifyContent="center" alignContent={"center"}>
       <Link href={provider.url} underline="none" target="_blank" rel="noopener">
-        <Box display="table-cell">
+        <Box display="table-cell" maxWidth={80}>
           <Avatar
             alt={provider.name}
             src={provider.logoUrl}

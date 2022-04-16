@@ -10,7 +10,7 @@ import {
   Box,
 } from "@mui/material";
 import { fetchProductById } from "../../api/productApi";
-import PriceTable from "./PriceTable";
+import PriceTable from "./price/PriceTable";
 
 const Product = (props) => {
   const [product, setProduct] = useState();
