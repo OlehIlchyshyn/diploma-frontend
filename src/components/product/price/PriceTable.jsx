@@ -13,6 +13,7 @@ import {
   Checkbox,
   FormControlLabel,
   Typography,
+  Tooltip,
 } from "@mui/material";
 import PriceProvider from "./PriceProvider";
 import Price from "./Price";
@@ -180,14 +181,21 @@ export default function PriceTable({ prices }) {
                         <Price price={price} />
                       </TableCell>
                       <TableCell align="right" width={100}>
-                        <Button
-                          href={price.purchaseUrl}
-                          target="_blank"
-                          variant="contained"
-                          disabled={!isAvailable}
+                        <Tooltip
+                          title="Товару немає в наявності"
+                          disableHoverListener={isAvailable}
                         >
-                          Купити
-                        </Button>
+                          <span>
+                            <Button
+                              href={price.purchaseUrl}
+                              target="_blank"
+                              variant="contained"
+                              disabled={!isAvailable}
+                            >
+                              Купити
+                            </Button>
+                          </span>
+                        </Tooltip>
                       </TableCell>
                     </TableRow>
                   );
