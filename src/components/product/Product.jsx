@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { fetchProductById } from "../../api/productApi";
 import PriceTable from "./price/PriceTable";
+import TechSpecsTable from "./TechSpecsTable";
 
 const Product = (props) => {
   const [product, setProduct] = useState();
@@ -54,6 +55,7 @@ const Product = (props) => {
         </Grid>
       </Grid>
       <PriceTable prices={product.priceList} />
+      <TechSpecsTable techSpecs={product.techSpecs} />
     </Container>
   );
 };
