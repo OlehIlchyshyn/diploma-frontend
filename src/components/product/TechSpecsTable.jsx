@@ -3,9 +3,14 @@ import { Paper, Divider, Typography, List, Grid } from "@mui/material";
 const SpecsGroup = ({ groupName, properties }) => {
   return (
     <Paper sx={{ margin: 3 }}>
-      <Divider textAlign="left">
-        <Typography variant="body1">{groupName}</Typography>
-      </Divider>
+      {groupName === "" ? (
+        <></>
+      ) : (
+        <Divider textAlign="left">
+          <Typography variant="body1">{groupName}</Typography>
+        </Divider>
+      )}
+
       <List sx={{ marginX: 3 }}>
         {Object.entries(properties).map(([name, value]) => (
           <>
@@ -19,7 +24,13 @@ const SpecsGroup = ({ groupName, properties }) => {
                 style={{ marginRight: "-1px" }}
               />
               <Grid item xs={6} pl={1}>
-                {value}
+                {value.includes("<br>") ||
+                value.includes("<br />") ||
+                value.includes("<b>") ? (
+                  <span dangerouslySetInnerHTML={{ __html: value }} />
+                ) : (
+                  value
+                )}
               </Grid>
             </Grid>
             <Divider />
@@ -33,6 +44,9 @@ const SpecsGroup = ({ groupName, properties }) => {
 const TechSpecsTable = ({ techSpecs }) => {
   return (
     <Paper>
+      <Typography variant="h5" align="left" pt={2} pl={5}>
+        Технічні характеристики
+      </Typography>
       {Object.entries(techSpecs).map(([groupName, groupProperties]) => {
         return (
           <SpecsGroup
