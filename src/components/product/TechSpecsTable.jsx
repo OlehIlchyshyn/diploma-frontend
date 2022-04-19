@@ -1,4 +1,5 @@
 import { Paper, Divider, Typography, List, Grid } from "@mui/material";
+import React from "react";
 
 const SpecsGroup = ({ groupName, properties }) => {
   return (
@@ -13,7 +14,7 @@ const SpecsGroup = ({ groupName, properties }) => {
 
       <List sx={{ marginX: 3 }}>
         {Object.entries(properties).map(([name, value]) => (
-          <>
+          <React.Fragment key={name}>
             <Grid container key={name} textAlign={"left"}>
               <Grid item xs={6} pl={1}>
                 {name}
@@ -34,7 +35,7 @@ const SpecsGroup = ({ groupName, properties }) => {
               </Grid>
             </Grid>
             <Divider />
-          </>
+          </React.Fragment>
         ))}
       </List>
     </Paper>
