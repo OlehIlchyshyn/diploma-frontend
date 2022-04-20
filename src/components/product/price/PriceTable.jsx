@@ -18,6 +18,8 @@ import {
 import PriceProvider from "./PriceProvider";
 import Price from "./Price";
 import AvailabilityStatus from "./AvailabilityStatus";
+import PriceHistoryModal from "./history/PriceHistoryModal";
+import { priceHistoryObjectToArray } from "../../../utils";
 
 function descendingComparator(a, b, orderBy) {
   if (orderBy === "priceProvider") {
@@ -113,7 +115,7 @@ function EnhancedTableHead(props) {
   );
 }
 
-export default function PriceTable({ prices }) {
+export default function PriceTable({ prices, priceHistory }) {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("priceProvider");
   const [filterNotAvailable, setFilterNotAvailable] = useState(true);
@@ -162,7 +164,12 @@ export default function PriceTable({ prices }) {
                 })
                 .map((price) => {
                   const isAvailable = price.availabilityStatus === "AVAILABLE";
-
+                  console.log(price);
+                  console.log(priceHistoryObjectToArray(priceHistory));
+                  const providerPriceHistory = priceHistoryObjectToArray(priceHistory).filter(priceHistoryEntry => {
+                    console.log(priceHistoryEntry);
+                    return priceHistoryEntry.priceProvider.id === price.priceProvider.id}
+                    ); 
                   return (
                     <TableRow hover key={price.id}>
                       <TableCell align="center" width={150}>
@@ -170,7 +177,7 @@ export default function PriceTable({ prices }) {
                       </TableCell>
                       <TableCell align="center">
                         <Typography>Від 1200грн до 2000грн</Typography>
-                        <Button variant="text">Переглянути деталі</Button>
+                        <PriceHistoryModal priceHistory={providerPriceHistory}/>
                       </TableCell>
                       <TableCell align="center">
                         <AvailabilityStatus

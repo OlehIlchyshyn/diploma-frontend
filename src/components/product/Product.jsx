@@ -10,23 +10,32 @@ import {
   Box,
 } from "@mui/material";
 import { fetchProductById } from "../../api/productApi";
+import { fetchHistoryByProductId } from "../../api/priceHistoryApi";
 import PriceTable from "./price/PriceTable";
 import TechSpecsTable from "./TechSpecsTable";
 
 const Product = (props) => {
   const [product, setProduct] = useState();
+  const [priceHistory, setPriceHistory] = useState();
   let params = useParams();
 
   useEffect(() => {
     let id = params.productId;
     requestProductDetails(id);
+    requestProductPriceHistory(id);
   }, [params.productId]);
 
   async function requestProductDetails(id) {
     fetchProductById(id).then((product) => setProduct(product));
   }
 
-  return product === undefined ? (
+  async function requestProductPriceHistory(id) {
+    fetchHistoryByProductId(id).then((priceHistory) => {
+      setPriceHistory(priceHistory);
+    });
+  }
+
+  return product === undefined || priceHistory === undefined ? (
     <LinearProgress />
   ) : (
     <Container>
@@ -54,7 +63,7 @@ const Product = (props) => {
           <Box>Опис</Box>
         </Grid>
       </Grid>
-      <PriceTable prices={product.priceList} />
+      <PriceTable prices={product.priceList} priceHistory={priceHistory} />
       <TechSpecsTable techSpecs={product.techSpecs} />
     </Container>
   );
