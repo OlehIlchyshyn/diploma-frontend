@@ -1,17 +1,5 @@
 import { Typography } from "@mui/material";
-
-function getLowestPrice(prices) {
-  console.log(prices);
-  return prices.reduce((prev, curr) =>
-    prev.amount < curr.amount ? prev : curr
-  );
-}
-
-function getHighestPrice(prices) {
-  return prices.reduce((prev, curr) =>
-    prev.amount < curr.amount ? prev : curr
-  );
-}
+import { getLowestPrice, getHighestPrice } from "../../../utils";
 
 const PriceRangeInfo = ({ priceHistory }) => {
   const minPrice = getLowestPrice(priceHistory);

@@ -31,3 +31,15 @@ export function priceHistoryObjectToArray(object) {
     })
     .flat();
 }
+
+export function getLowestPrice(prices) {
+  return prices.reduce((prev, curr) =>
+    prev.amount < curr.amount ? prev : curr
+  );
+}
+
+export function getHighestPrice(prices) {
+  return prices.reduce((prev, curr) =>
+    prev.amount > curr.amount ? prev : curr
+  );
+}
