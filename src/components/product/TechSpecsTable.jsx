@@ -44,7 +44,7 @@ const SpecsGroup = ({ groupName, properties }) => {
 
 const TechSpecsTable = ({ techSpecs }) => {
   return (
-    <Paper>
+    <Paper id="techSpecs">
       <Typography variant="h5" align="left" pt={2} pl={5}>
         Технічні характеристики
       </Typography>

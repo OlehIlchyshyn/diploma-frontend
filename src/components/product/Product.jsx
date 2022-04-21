@@ -8,11 +8,14 @@ import {
   CardMedia,
   Divider,
   Box,
+  Button,
+  Link,
 } from "@mui/material";
 import { fetchProductById } from "../../api/productApi";
 import { fetchHistoryByProductId } from "../../api/priceHistoryApi";
 import PriceTable from "./price/PriceTable";
 import TechSpecsTable from "./TechSpecsTable";
+import ActivePropositionsBox from "./ActivePropositionsBox";
 
 const Product = (props) => {
   const [product, setProduct] = useState();
@@ -58,13 +61,36 @@ const Product = (props) => {
           />
         </Grid>
         <Grid item xs={6}>
-          <Box>Ціни</Box>
-          <Box>Характеристики</Box>
-          <Box>Опис</Box>
+          <Divider textAlign="left">
+            <Typography variant="body1">Ціни</Typography>
+          </Divider>
+          <ActivePropositionsBox prices={product.priceList} />
+          <Box>
+            <Divider textAlign="left">
+              <Typography variant="body1">Короткий опис</Typography>
+            </Divider>
+            <Typography textAlign={"left"} py={1}>
+              {product.description === ""
+                ? "На жаль, короткий опис цього товару відсутній :("
+                : product.description}
+            </Typography>
+            <Button
+              variant="text"
+              href="#techSpecs"
+              size="small"
+              style={{ color: "grey" }}
+            >
+              Переглянути технічні характеристики
+            </Button>
+          </Box>
         </Grid>
       </Grid>
-      <PriceTable prices={product.priceList} priceHistory={priceHistory} />
-      <TechSpecsTable techSpecs={product.techSpecs} />
+      <PriceTable
+        prices={product.priceList}
+        priceHistory={priceHistory}
+        id="priceList"
+      />
+      <TechSpecsTable id="techSpecs" techSpecs={product.techSpecs} />
     </Container>
   );
 };
