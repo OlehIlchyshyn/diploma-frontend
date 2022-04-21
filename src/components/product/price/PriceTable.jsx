@@ -12,7 +12,6 @@ import {
   Button,
   Checkbox,
   FormControlLabel,
-  Typography,
   Tooltip,
 } from "@mui/material";
 import PriceProvider from "./PriceProvider";
@@ -20,6 +19,7 @@ import Price from "./Price";
 import AvailabilityStatus from "./AvailabilityStatus";
 import PriceHistoryModal from "./history/PriceHistoryModal";
 import { priceHistoryObjectToArray } from "../../../utils";
+import PriceRangeInfo from "./PriceRangeInfo";
 
 function descendingComparator(a, b, orderBy) {
   if (orderBy === "priceProvider") {
@@ -179,7 +179,7 @@ export default function PriceTable({ prices, priceHistory }) {
                         <PriceProvider provider={price.priceProvider} />
                       </TableCell>
                       <TableCell align="center">
-                        <Typography>Від 1200грн до 2000грн</Typography>
+                        <PriceRangeInfo priceHistory={providerPriceHistory} />
                         <PriceHistoryModal
                           priceHistory={providerPriceHistory}
                         />
