@@ -23,12 +23,11 @@ export function getMinPrice(priceList) {
 }
 
 export function priceHistoryObjectToArray(object) {
-  console.log(object);
-  return Object.keys(object).map(function (key) {
-    // Getting first element of price records for given time,
-    // but there is possibility of two records retrieved at the same time
-    let arrayItem = object[key][0];
-    arrayItem["date"] = key;
-    return arrayItem;
-  });
+  return Object.keys(object)
+    .map(function (key) {
+      let arrayItem = object[key];
+      arrayItem.forEach((item) => (item["date"] = key));
+      return arrayItem;
+    })
+    .flat();
 }

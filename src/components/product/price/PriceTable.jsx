@@ -164,12 +164,15 @@ export default function PriceTable({ prices, priceHistory }) {
                 })
                 .map((price) => {
                   const isAvailable = price.availabilityStatus === "AVAILABLE";
-                  console.log(price);
-                  console.log(priceHistoryObjectToArray(priceHistory));
-                  const providerPriceHistory = priceHistoryObjectToArray(priceHistory).filter(priceHistoryEntry => {
-                    console.log(priceHistoryEntry);
-                    return priceHistoryEntry.priceProvider.id === price.priceProvider.id}
-                    ); 
+                  const providerPriceHistory = priceHistoryObjectToArray(
+                    priceHistory
+                  ).filter((priceHistoryEntry) => {
+                    return (
+                      priceHistoryEntry.priceProvider.id ===
+                      price.priceProvider.id
+                    );
+                  });
+
                   return (
                     <TableRow hover key={price.id}>
                       <TableCell align="center" width={150}>
@@ -177,7 +180,9 @@ export default function PriceTable({ prices, priceHistory }) {
                       </TableCell>
                       <TableCell align="center">
                         <Typography>Від 1200грн до 2000грн</Typography>
-                        <PriceHistoryModal priceHistory={providerPriceHistory}/>
+                        <PriceHistoryModal
+                          priceHistory={providerPriceHistory}
+                        />
                       </TableCell>
                       <TableCell align="center">
                         <AvailabilityStatus
