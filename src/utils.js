@@ -43,3 +43,7 @@ export function getHighestPrice(prices) {
     prev.amount > curr.amount ? prev : curr
   );
 }
+
+export function getAveragePrice(prices) {
+  return prices.reduce((acc, price) => acc + price.amount, 0) / prices.length;
+}
