@@ -131,7 +131,7 @@ export default function PriceTable({ prices, priceHistory }) {
   };
 
   return (
-    <Box sx={{ width: "100%", mt: 3 }}>
+    <Box id="priceList" sx={{ width: "100%", mt: 3 }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
         <Box sx={{ float: "right" }}>
           <FormControlLabel

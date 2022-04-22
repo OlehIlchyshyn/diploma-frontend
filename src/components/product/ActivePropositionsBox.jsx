@@ -1,4 +1,4 @@
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography, Grid, Button } from "@mui/material";
 import { getHighestPrice, getLowestPrice, getAveragePrice } from "../../utils";
 
 const ActivePropositionsBox = ({ prices }) => {
@@ -13,7 +13,15 @@ const ActivePropositionsBox = ({ prices }) => {
             Від <i>{minPrice.amount}</i> {minPrice.currency} до{" "}
             <i> {maxPrice.amount}</i> {minPrice.currency}
           </Typography>
-          <Typography p={1}>Всього пропозицій: {prices.length}</Typography>
+          <Button
+            variant="text"
+            href="#priceList"
+            size="small"
+            style={{ color: "grey" }}
+            margin={3}
+          >
+            <Typography p={1}>Всього пропозицій: {prices.length}</Typography>
+          </Button>
         </Grid>
         <Grid
           item

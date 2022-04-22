@@ -8,13 +8,13 @@ import {
   CardMedia,
   Divider,
   Box,
-  Button,
 } from "@mui/material";
 import { fetchProductById } from "../../api/productApi";
 import { fetchHistoryByProductId } from "../../api/priceHistoryApi";
 import PriceTable from "./price/PriceTable";
 import TechSpecsTable from "./TechSpecsTable";
 import ActivePropositionsBox from "./ActivePropositionsBox";
+import ProductDescriptionBox from "./ProductDescriptionBox";
 
 const Product = (props) => {
   const [product, setProduct] = useState();
@@ -65,30 +65,7 @@ const Product = (props) => {
           </Divider>
           <ActivePropositionsBox prices={product.priceList} />
           <br />
-          <Box>
-            <Divider textAlign="center">
-              <Typography variant="body1">Короткий опис</Typography>
-            </Divider>
-            {product.description === "" ? (
-              <Typography textAlign={"center"} py={1}>
-                {product.description}На жаль, короткий опис цього товару
-                відсутній :(
-              </Typography>
-            ) : (
-              <Typography textAlign={"left"} py={1}>
-                {product.description}
-              </Typography>
-            )}
-            <Button
-              variant="text"
-              href="#techSpecs"
-              size="small"
-              style={{ color: "grey" }}
-              margin={3}
-            >
-              Переглянути технічні характеристики
-            </Button>
-          </Box>
+          <ProductDescriptionBox product={product} />
         </Grid>
       </Grid>
       <PriceTable
