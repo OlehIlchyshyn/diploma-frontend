@@ -48,7 +48,7 @@ const Product = (props) => {
       </Box>
       <Divider margin={5} />
       <Grid container mt={2}>
-        <Grid item xs={6}>
+        <Grid item xs={12} lg={6}>
           <CardMedia
             component="img"
             style={{
@@ -59,7 +59,7 @@ const Product = (props) => {
             alt={product.fullName}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} lg={6}>
           <Divider textAlign="center">
             <Typography variant="body1">Ціни</Typography>
           </Divider>

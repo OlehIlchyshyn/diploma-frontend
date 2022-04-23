@@ -5,18 +5,18 @@ import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlin
 
 const categories = [
   {
-    title: "Computers & Laptops",
+    title: "Комп'ютери та ноутбуки",
     items: [
       {
-        title: "Computers",
+        title: "Комп'ютери",
         to: "/computers",
       },
       {
-        title: "Laptops",
+        title: "Ноутбуки",
         to: "/laptops",
       },
       {
-        title: "Tablets",
+        title: "Планшети",
         to: "/tablets",
       },
     ],
@@ -26,23 +26,23 @@ const categories = [
 export const menu = [
   {
     icon: <HomeOutlinedIcon />,
-    title: "Home",
+    title: "На головну",
     to: "/",
     items: [],
   },
   {
     icon: <ShoppingBasketOutlinedIcon />,
-    title: "All products",
+    title: "Усі товари",
     to: "/products",
   },
   {
     icon: <CategoryIcon />,
-    title: "Categories",
+    title: "Категорії",
     items: categories,
   },
   {
     icon: <InfoIcon />,
-    title: "About",
+    title: "Про сервіс",
     to: "/about",
   },
 ];

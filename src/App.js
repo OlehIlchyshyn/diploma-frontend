@@ -8,7 +8,8 @@ import { DrawerHeader } from "./DrawerHeader";
 import CustomAppBar from "./components/navigation/CustomAppBar";
 import CustomDrawer from "./components/navigation/CustomDrawer";
 
-export const drawerWidth = 240;
+export const drawerWidth = 300;
+
 const App = () => {
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => {

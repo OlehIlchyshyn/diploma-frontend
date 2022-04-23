@@ -15,15 +15,17 @@ const ProductDescriptionBox = ({ product }) => {
           {product.description}
         </Typography>
       )}
-      <Button
-        variant="text"
-        href="#techSpecs"
-        size="small"
-        style={{ color: "grey" }}
-        margin={3}
-      >
-        Переглянути технічні характеристики
-      </Button>
+      <Box textAlign={"center"}>
+        <Button
+          variant="text"
+          href="#techSpecs"
+          size="small"
+          style={{ color: "grey" }}
+          margin={3}
+        >
+          Переглянути технічні характеристики
+        </Button>
+      </Box>
     </Box>
   );
 };
