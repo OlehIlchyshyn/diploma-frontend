@@ -32,6 +32,7 @@ const App = () => {
         <DrawerHeader />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="search" element={<ProductList />} />
           <Route path="products" element={<ProductList />} />
           <Route
             path="products/categories/:categoryId"
@@ -79,6 +80,10 @@ const About = () => {
       </main>
     </>
   );
+};
+
+const TestPage = () => {
+  return <div>Test page</div>;
 };
 
 export default App;

@@ -1,21 +1,24 @@
 import { Grid } from "@mui/material";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { fetchProducts, fetchProductsByCategoryId } from "../../api/productApi";
+import { useParams, useSearchParams } from "react-router-dom";
+import { fetchProducts, fetchProductsByCategoryId, fetchProductsByTitle } from "../../api/productApi";
 import ProductTile from "./ProductTile";
 
 const ProductList = () => {
   const [productList, setProductList] = useState([]);
   let params = useParams();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     let categoryId = params.categoryId;
-    if (categoryId === undefined) {
+    if (searchParams.has('q')) {
+      requestSearchResults(searchParams.get('q'));
+    } else if (categoryId === undefined) {
       requestProductList();
     } else {
       requestProductListByCategory(categoryId);
     }
-  }, [params.categoryId]);
+  }, [params.categoryId, searchParams]);
 
   async function requestProductListByCategory(categoryId) {
     fetchProductsByCategoryId(categoryId).then((products) =>
@@ -25,6 +28,10 @@ const ProductList = () => {
 
   async function requestProductList() {
     fetchProducts().then((products) => setProductList(products));
+  }
+
+  async function requestSearchResults(query) {
+    fetchProductsByTitle(query).then((products) => setProductList(products));
   }
 
   return productList.length === 0 ? (

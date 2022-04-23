@@ -1,6 +1,7 @@
 import { IconButton, Toolbar, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { AppBar } from "./AppBar";
+import SearchBar from "./SearchBar";
 
 const CustomAppBar = ({ open, handleDrawerOpen }) => {
   return (
@@ -15,9 +16,10 @@ const CustomAppBar = ({ open, handleDrawerOpen }) => {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap component="div" marginX={"auto"}>
-          Сервіс порівння цін на товари
+        <Typography variant="h6" noWrap component="div" marginRight={"auto"}>
+          Сервіс порівняння цін на товари
         </Typography>
+        <SearchBar />
       </Toolbar>
     </AppBar>
   );

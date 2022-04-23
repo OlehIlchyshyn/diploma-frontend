@@ -16,3 +16,8 @@ export const fetchProductsByCategoryId = async (categoryId) => {
   const res = await API.get(URL + `/categories/${categoryId}`);
   return res.data;
 };
+
+export const fetchProductsByTitle = async (query) => {
+  const res = await API.get(URL + `/search?query=${query}`);
+  return res.data;
+};

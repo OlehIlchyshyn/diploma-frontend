@@ -67,7 +67,6 @@ const ProductTile = (props) => {
                 <Link
                   to={`/products/${product.id}`}
                   style={{ textDecoration: "none" }}
-                  paddingLeft={"auto"}
                 >
                   <Button size="medium" variant="contained">
                     Дізнатись більше
