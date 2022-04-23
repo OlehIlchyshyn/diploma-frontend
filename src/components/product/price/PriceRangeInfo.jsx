@@ -9,7 +9,7 @@ const PriceRangeInfo = ({ priceHistory }) => {
     <Typography>
       {minPrice === maxPrice
         ? "Ціна не змінювалась"
-        : `Від ${minPrice}грн до ${maxPrice}грн`}
+        : `Від ${minPrice.amount} ${minPrice.currency} до ${maxPrice.amount} ${maxPrice.currency}`}
     </Typography>
   );
 };
