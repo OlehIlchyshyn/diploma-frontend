@@ -27,8 +27,8 @@ export const options = {
     x: {
       type: "time",
       time: {
-        // unit: "day",
-        unit: "minute",
+        unit: "day",
+        // unit: "minute",
       },
     },
   },
