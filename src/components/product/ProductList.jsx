@@ -1,22 +1,31 @@
 import { Grid } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
-import { fetchProducts, fetchProductsByCategoryId, fetchProductsByTitle } from "../../api/productApi";
+import { Helmet } from "react-helmet-async";
+import {
+  fetchProducts,
+  fetchProductsByCategoryId,
+  fetchProductsByTitle,
+} from "../../api/productApi";
 import ProductTile from "./ProductTile";
 
 const ProductList = () => {
   const [productList, setProductList] = useState([]);
   let params = useParams();
   const [searchParams] = useSearchParams();
+  const [title, setTitle] = useState("Сервіс порівняння цін на товари");
 
   useEffect(() => {
     let categoryId = params.categoryId;
-    if (searchParams.has('q')) {
-      requestSearchResults(searchParams.get('q'));
-    } else if (categoryId === undefined) {
-      requestProductList();
-    } else {
+    if (searchParams.has("q")) {
+      requestSearchResults(searchParams.get("q"));
+      setTitle("Результат пошуку");
+    } else if (categoryId !== undefined) {
       requestProductListByCategory(categoryId);
+      setTitle("Список товарів за категоріями");
+    } else {
+      requestProductList();
+      setTitle("Всі товари");
     }
   }, [params.categoryId, searchParams]);
 
@@ -34,14 +43,21 @@ const ProductList = () => {
     fetchProductsByTitle(query).then((products) => setProductList(products));
   }
 
-  return productList.length === 0 ? (
-    <div>No products</div>
-  ) : (
-    <Grid container spacing={3} paddingX={5}>
-      {productList.map((product) => (
-        <ProductTile product={product} key={product.id} />
-      ))}
-    </Grid>
+  return (
+    <>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
+      {productList.length === 0 ? (
+        <div>No products</div>
+      ) : (
+        <Grid container spacing={3} paddingX={5}>
+          {productList.map((product) => (
+            <ProductTile product={product} key={product.id} />
+          ))}
+        </Grid>
+      )}
+    </>
   );
 };
 

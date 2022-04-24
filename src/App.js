@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { Box } from "@mui/material";
+import { Helmet } from "react-helmet-async";
 import ProductList from "./components/product/ProductList";
 import Product from "./components/product/Product";
 import { Main } from "./Main";
@@ -57,6 +58,9 @@ const App = () => {
 const Home = () => {
   return (
     <>
+      <Helmet>
+        <title>Сервіс порівння цін на товари</title>
+      </Helmet>
       <main>
         <h2>Welcome to the homepage!</h2>
         <p>You can do this, I believe in you.</p>
@@ -74,16 +78,15 @@ const Home = () => {
 const About = () => {
   return (
     <>
+      <Helmet>
+        <title>Про сервіс</title>
+      </Helmet>
       <main>
         <h2>Who are we?</h2>
         <p>That feels like an existential question, don't you think?</p>
       </main>
     </>
   );
-};
-
-const TestPage = () => {
-  return <div>Test page</div>;
 };
 
 export default App;
