@@ -48,12 +48,12 @@ const MultiLevel = ({ item }) => {
 
   return (
     <>
-      <ListItem button onClick={handleClick}>
+      <ListItem button onClick={handleClick} >
         <ListItemIcon>{item.icon}</ListItemIcon>
         <ListItemText primary={item.title} />
         {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </ListItem>
-      <Collapse in={open} timeout="auto" unmountOnExit collapsedSize="auto">
+      <Collapse in={open} timeout="auto" unmountOnExit collapsedSize="auto" sx={{marginLeft: "5%"}}>
         <List component="div" disablePadding>
           {children.map((child, key) => (
             <MenuItem key={key} item={child} />

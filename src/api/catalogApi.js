@@ -9,11 +9,9 @@ const fetchCategories = async () => {
 
 export const getCategories = async () => {
   let categories = await fetchCategories();
-  console.log(categories);
   return categories.map((category) => {
     const subcategories = category.subCategories.map((subcategory) => {
-      console.log(subcategory.subCategories);
-      if (subcategory.subCategories !== undefined) {
+      if (subcategory.subCategories.length !== 0) {
         const subsubcategories = subcategory.subCategories.map(
           (subSubCategory) => {
             return {

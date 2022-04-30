@@ -15,7 +15,6 @@ const ProductList = () => {
   let params = useParams();
   const [searchParams] = useSearchParams();
   const [title, setTitle] = useState("Сервіс порівняння цін на товари");
-  const [currentCategory, setCurrentCategory] = useState();
 
   useEffect(() => {
     let categoryId = params.categoryId;
@@ -29,7 +28,7 @@ const ProductList = () => {
       requestProductList();
       setTitle("Всі товари");
     }
-  }, [params.categoryId, searchParams, currentCategory]);
+  }, [params.categoryId, searchParams]);
 
   async function requestProductListByCategory(categoryId) {
     fetchProductsByCategoryId(categoryId).then((products) =>
@@ -47,7 +46,6 @@ const ProductList = () => {
 
   async function requestCategoryDetails(categoryId) {
     fetchCategoryById(categoryId).then((category) => {
-      setCurrentCategory(category);
       setTitle(category.title);
     });
   }
