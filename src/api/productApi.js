@@ -7,13 +7,27 @@ export const fetchProductById = async (productId) => {
   return res.data;
 };
 
-export const fetchProducts = async () => {
-  const res = await API.get(URL + "/");
+export const fetchProducts = async (pageNumber, pageSize, sorting) => {
+  const res = await API.get(URL, {
+    params: { page: pageNumber, size: pageSize, sort: sorting },
+  });
   return res.data;
 };
 
-export const fetchProductsByCategoryId = async (categoryId) => {
-  const res = await API.get(URL + `/categories/${categoryId}`);
+export const fetchProductsByCategoryId = async (
+  categoryId,
+  pageNumber,
+  pageSize,
+  sorting
+) => {
+  const res = await API.get(URL, {
+    params: {
+      categoryId: categoryId,
+      page: pageNumber,
+      size: pageSize,
+      sort: sorting,
+    },
+  });
   return res.data;
 };
 

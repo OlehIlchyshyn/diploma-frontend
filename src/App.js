@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { Box } from "@mui/material";
 import { Helmet } from "react-helmet-async";
-import ProductList from "./components/product/ProductList";
 import Product from "./components/product/Product";
 import { Main } from "./Main";
 import { DrawerHeader } from "./DrawerHeader";
 import CustomAppBar from "./components/navigation/CustomAppBar";
 import CustomDrawer from "./components/navigation/CustomDrawer";
+import SearchResults from "./components/product/SearchResults";
+import PageableProductList from "./components/product/PageableProductList";
 
 export const drawerWidth = 300;
 
@@ -33,11 +34,11 @@ const App = () => {
         <DrawerHeader />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="search" element={<ProductList />} />
-          <Route path="products" element={<ProductList />} />
+          <Route path="search" element={<SearchResults />} />
+          <Route path="products" element={<PageableProductList />} />
           <Route
             path="products/categories/:categoryId"
-            element={<ProductList />}
+            element={<PageableProductList />}
           />
           <Route path="products/:productId" element={<Product />} />
           <Route path="about" element={<About />} />

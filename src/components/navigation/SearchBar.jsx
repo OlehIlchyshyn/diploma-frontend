@@ -67,7 +67,7 @@ const SearchBar = () => {
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
-        placeholder="Search…"
+        placeholder="Пошук…"
         inputProps={{ "aria-label": "search" }}
         onKeyPress={handleKeyPress}
       />

@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material";
+import { ukUA } from "@mui/material/locale";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -17,12 +19,23 @@ function ErrorFallback({ error, resetErrorBoundary }) {
   );
 }
 
+const theme = createTheme(
+  {
+    palette: {
+      primary: { main: "#1976d2" },
+    },
+  },
+  ukUA
+);
+
 ReactDOM.render(
   <React.StrictMode>
     <HelmetProvider>
       <BrowserRouter>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <App />
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
         </ErrorBoundary>
       </BrowserRouter>
     </HelmetProvider>
