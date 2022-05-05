@@ -17,6 +17,8 @@ export function hasChildren(item) {
 }
 
 export function getMinPrice(priceList) {
+  if (priceList.length === 0) 
+    return 0;
   return priceList.reduce(function (prev, curr) {
     return prev.amount < curr.amount ? prev : curr;
   });
@@ -33,12 +35,16 @@ export function priceHistoryObjectToArray(object) {
 }
 
 export function getLowestPrice(prices) {
+  if (prices.length === 0) 
+    return 0;
   return prices.reduce((prev, curr) =>
     prev.amount < curr.amount ? prev : curr
   );
 }
 
 export function getHighestPrice(prices) {
+  if (prices.length === 0) 
+    return 0;
   return prices.reduce((prev, curr) =>
     prev.amount > curr.amount ? prev : curr
   );

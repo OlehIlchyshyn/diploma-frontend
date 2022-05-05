@@ -56,7 +56,7 @@ const ProductTile = (props) => {
                 textAlign={isSmallScreen ? "center" : "left"}
                 paddingRight={"auto"}
               >
-                від <b>{minPrice.amount}</b> {minPrice.currency}
+                від <b>{minPrice.amount.toFixed(2)}</b> {minPrice.currency}
               </Typography>
             </Grid>
             <Grid item xs={12} md={6} marginLeft="auto">

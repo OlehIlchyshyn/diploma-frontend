@@ -1,9 +1,9 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import ProductTile from "./ProductTile";
 
 const ProductList = ({ productList }) => {
   return productList.length === 0 ? (
-    <div>No products</div>
+    <Typography variant="h3" textAlign={"center"}>No products</Typography>
   ) : (
     <Grid container spacing={3} paddingX={5}>
       {productList.map((product) => (

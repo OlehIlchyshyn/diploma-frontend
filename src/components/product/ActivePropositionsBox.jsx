@@ -10,8 +10,8 @@ const ActivePropositionsBox = ({ prices }) => {
       <Grid container>
         <Grid item xs={6} textAlign="center">
           <Typography p={1}>
-            Від <i>{minPrice.amount}</i> {minPrice.currency} до{" "}
-            <i> {maxPrice.amount}</i> {minPrice.currency}
+            Від <i>{minPrice.amount.toFixed(2)}</i> {minPrice.currency} до{" "}
+            <i> {maxPrice.amount.toFixed(2)}</i> {minPrice.currency}
           </Typography>
           <Button
             variant="text"
