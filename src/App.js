@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Box } from "@mui/material";
-import { Helmet } from "react-helmet-async";
 import Product from "./components/product/Product";
 import { Main } from "./Main";
 import { DrawerHeader } from "./DrawerHeader";
@@ -9,11 +8,14 @@ import CustomAppBar from "./components/navigation/CustomAppBar";
 import CustomDrawer from "./components/navigation/CustomDrawer";
 import SearchResults from "./components/product/SearchResults";
 import PageableProductList from "./components/product/PageableProductList";
+import Home from "./Home";
+import About from "./About";
 
 export const drawerWidth = 300;
 
 const App = () => {
   const [open, setOpen] = useState(false);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -53,40 +55,6 @@ const App = () => {
         </Routes>
       </Main>
     </Box>
-  );
-};
-
-const Home = () => {
-  return (
-    <>
-      <Helmet>
-        <title>Сервіс порівння цін на товари</title>
-      </Helmet>
-      <main>
-        <h2>Welcome to the homepage!</h2>
-        <p>You can do this, I believe in you.</p>
-      </main>
-      <nav>
-        <Link to="/products">Products</Link>
-      </nav>
-      <nav>
-        <Link to="/about">About</Link>
-      </nav>
-    </>
-  );
-};
-
-const About = () => {
-  return (
-    <>
-      <Helmet>
-        <title>Про сервіс</title>
-      </Helmet>
-      <main>
-        <h2>Who are we?</h2>
-        <p>That feels like an existential question, don't you think?</p>
-      </main>
-    </>
   );
 };
 

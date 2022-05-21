@@ -12,7 +12,7 @@ const ProductDescriptionBox = ({ product }) => {
         </Typography>
       ) : (
         <Typography textAlign={"left"} py={1}>
-          {product.description}
+          <span dangerouslySetInnerHTML={{ __html: product.description }} />
         </Typography>
       )}
       <Box textAlign={"center"}>

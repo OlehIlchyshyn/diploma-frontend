@@ -64,9 +64,13 @@ let data = {
 };
 
 function mapHistoryArrayToData(historyArray) {
-  return historyArray.map((historyEntry) => {
-    return { x: historyEntry.date, y: historyEntry.amount };
-  });
+  return historyArray
+    .sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    })
+    .map((historyEntry) => {
+      return { x: historyEntry.date, y: historyEntry.amount };
+    });
 }
 
 function updateGraphData(priceHistory) {
